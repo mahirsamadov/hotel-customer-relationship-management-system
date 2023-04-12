@@ -1,0 +1,13 @@
+@font-face {
+    font-family: brand;
+    src: url('./assets/fonts/AutumnFlowers-9YVZK.otf');
+}
+
+
+.App{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

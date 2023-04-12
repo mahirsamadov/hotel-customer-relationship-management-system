@@ -19,11 +19,11 @@ import { handleSubmit } from '../helpers/handleSubmit';
 const theme = createTheme();
 
 export const UserLogin = () => {
- 
+
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container style={{margin: '1rem', border: '1px solid black', borderRadius: '10px', backgroundColor: 'white'}} component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
@@ -33,10 +33,10 @@ export const UserLogin = () => {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
+         
+            <Typography margin={1} fontSize={40} fontFamily={'brand'}>Luxor Inn and Suites</Typography>
+          
+          <Typography component="h3" variant="h6">
             Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -67,7 +67,8 @@ export const UserLogin = () => {
             <Button
               type="submit"
               fullWidth
-              variant="contained"
+              style={{backgroundColor: 'black', color: 'white'}}
+              className='bg-black'
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In
