@@ -1,17 +1,16 @@
 import { AppBar, Toolbar, IconButton, Typography } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import React from 'react'
+import { Brand } from './Brand'
 
 export const Header = () => {
   return (
-    <AppBar position="static">
-  <Toolbar variant="dense">
+    <AppBar position="static" >
+  <Toolbar className='bg-black' variant="dense">
     <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
       <MenuIcon />
     </IconButton>
-    <Typography variant="h6" color="inherit" component="div">
-      Photos
-    </Typography>
+    <Brand/>
   </Toolbar>
 </AppBar>
   )

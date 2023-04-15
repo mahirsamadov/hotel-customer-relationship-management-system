@@ -5,16 +5,16 @@ import {
 } from "react-router-dom";
 import { Layout } from "../hoc/Layout";
 import { RequireAuth } from "../hoc/RequireAuth";
-import { RoomDetails } from "../pages/roomDetails";
-import { Rooms } from "../pages/rooms";
-import { UserLogin } from "../pages/userLogin";
+import { RoomDetails } from "../pages/RoomDetails";
+import { Rooms } from "../pages/Rooms";
+import { UserLogin } from "../pages/UserLogin";
 
 const routes = createBrowserRouter(
   createRoutesFromElements([
     <Route path="/" element={<RequireAuth />}>
-      <Route path="/" element={<Layout />}>
-        <Route path="/rooms/" element={<Rooms />} />
-        <Route path="/rooms/:id" element={<RoomDetails />} />
+      <Route element={<Layout />}>
+        <Route index element={<Rooms />} />
+        <Route path=":id" element={<RoomDetails />} />
       </Route>
     </Route>,
     <Route path="/login" element={<UserLogin />} />,
