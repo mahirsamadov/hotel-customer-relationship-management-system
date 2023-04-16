@@ -13,9 +13,9 @@ export const fetchDataSuccess = (payload: any) => (
 )
 
 
-export const fetchDataFail = (payload: any) => (
+export const fetchDataFail = () => (
     {
         type: FETCH_DATA_FAIL,
-        payload
+
     }
 )

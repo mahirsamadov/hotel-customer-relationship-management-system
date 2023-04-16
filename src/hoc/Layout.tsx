@@ -7,7 +7,7 @@ import { Footer } from "../components/Footer";
 
 export const Layout = () => {
   return (
-    <Box className="bg-white h-[100vh]  w-[100vw] flex flex-col justify-between ">
+    <Box className="bg-white h-[100vh]  w-[100vw] flex flex-col justify-between">
       <Header />
       <Outlet />
       <Footer />

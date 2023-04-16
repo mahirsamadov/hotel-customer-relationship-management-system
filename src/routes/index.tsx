@@ -5,9 +5,9 @@ import {
 } from "react-router-dom";
 import { Layout } from "../hoc/Layout";
 import { RequireAuth } from "../hoc/RequireAuth";
-import { RoomDetails } from "../pages/RoomDetails";
-import { Rooms } from "../pages/Rooms";
-import { UserLogin } from "../pages/UserLogin";
+import { RoomDetails } from "../pages/roomDetails";
+import { Rooms } from "../pages/rooms";
+import { UserLogin } from "../pages/userLogin";
 
 const routes = createBrowserRouter(
   createRoutesFromElements([

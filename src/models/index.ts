@@ -1,4 +1,14 @@
 
+export interface BaseState<T> {
+    data: T[],
+    loading: boolean,
+    error: boolean
+}
+
+export interface Reducer<T>{
+ room: BaseState<T>,
+}
+
   export interface Room {
     id: string
     number: number
@@ -13,3 +23,8 @@
     description: string
   }
   
+
+  export interface IDataService<K> {
+    getRooms: () => Promise<K[]>
+    checkAuth: () => Promise<boolean>
+  }

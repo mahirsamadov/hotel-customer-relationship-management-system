@@ -5,8 +5,8 @@ import { Brand } from './Brand'
 
 export const Header = () => {
   return (
-    <AppBar position="static" >
-  <Toolbar className='bg-black' variant="dense">
+    <AppBar position="static">
+  <Toolbar className='bg-black z-10' variant="dense">
     <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
       <MenuIcon />
     </IconButton>

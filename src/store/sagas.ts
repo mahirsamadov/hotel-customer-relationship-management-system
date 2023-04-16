@@ -1,14 +1,20 @@
 import { call, takeEvery, put } from 'redux-saga/effects';
-import { fetchDataRequest } from './actionCreators';
+import DataService from '../Service/DataService';
+import { fetchDataFail, fetchDataRequest, fetchDataSuccess } from './actionCreators';
+import { FETCH_DATA_FAIL, FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS } from './actions';
 
 
-function* getRoomsSaga() {
-  const rooms = yield call(getRooms);
-  yield put({ type: fetchDataRequest(), payload: rooms });
+function* getRoomsSaga():Generator {
+  try{
+    const rooms = yield call(DataService.getRooms);
+  yield put({ type: FETCH_DATA_SUCCESS, payload: rooms });
+  }catch(error){
+    yield put(fetchDataFail());
+  }
 }
 
 function* getRoomsWatcher() {
-  yield takeEvery(fetchDataRequest, getRoomsSaga);
+  yield takeEvery(FETCH_DATA_REQUEST, getRoomsSaga);
 }
 
 function* rootSaga() {
