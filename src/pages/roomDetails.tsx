@@ -1,3 +1,4 @@
+import { uuidv4 } from "@firebase/util";
 import { Box, ImageList, ImageListItem, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,7 +20,6 @@ export const RoomDetails = () => {
     dispatch(fetchSingleDataRequest(id));
   }, []);
 
-  console.log("The room:", room);
 
   return (
     <Box className="flex w-[100vw] h-[100vh] flex-col py-2 px-8 gap-2 items-center overflow-scroll">
@@ -28,7 +28,7 @@ export const RoomDetails = () => {
       
       <ImageList sx={{ width: 1000, height: 800 }} variant="woven" cols={3} gap={8}>
   {room[0]?.gallery.map((item:any) => (
-    <ImageListItem key={item}>
+    <ImageListItem key={uuidv4()}>
       <img
         src={`${item}`}
         srcSet={`${item}`}
