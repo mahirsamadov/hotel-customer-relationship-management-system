@@ -1,6 +1,6 @@
 
 export interface BaseState<T> {
-    data: T[] | T,
+    data: T[] ,
     loading: boolean,
     error: boolean
 }

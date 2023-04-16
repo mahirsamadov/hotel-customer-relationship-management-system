@@ -25,8 +25,8 @@ class DataService<Room> implements IDataService<IRoom>{
         console.log("From ", id)
         const snapshot = await (await get(roomsRef));
         if (snapshot.exists()) {
-         console.log("From ", snapshot.val().filter((room: IRoom) => room.id === id))
-        return snapshot.val()
+         
+        return snapshot.val().filter((room: IRoom) => room.id === id)
         } else {
         console.log("No data available for:", id);
         return {} as Room;

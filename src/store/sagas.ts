@@ -18,7 +18,7 @@ function* getRoomSaga(action: any):Generator {
   try{
     
     console.log(action.payload)
-    const room = yield call(()=>{DataService.getRoom(action.payload)});
+    const room = yield call(()=>DataService.getRoom(action.payload));
   yield put({ type: FETCH_DATA_SUCCESS, payload: room });
   }catch(error){
     yield put(fetchDataFail());
