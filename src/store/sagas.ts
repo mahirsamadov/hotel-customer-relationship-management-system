@@ -25,6 +25,7 @@ function* getRoomSaga(action: any):Generator {
   }
 }
 
+
 function* getRoomsWatcher() {
   yield takeEvery(FETCH_DATA_REQUEST, getRoomsSaga);
 }

@@ -43,8 +43,16 @@ class DataService<Room> implements IDataService<IRoom>{
     //     await remove(roomsRef);
     // }
     
-    checkAuth = async (): Promise<boolean> => {
-        return true;
+    checkUser = async (): Promise<any> => {
+        const accountRef = ref(this.db, 'Accounts');
+        const snapshot = await get(accountRef);
+        if (snapshot.exists()) {
+        console.log(snapshot.val());
+        return snapshot.val();
+        } else {
+        console.log("No data available");
+        return [];
+        }
     }
     
 

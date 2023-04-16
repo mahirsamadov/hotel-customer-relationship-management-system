@@ -26,5 +26,5 @@ export interface Reducer<T>{
 
   export interface IDataService<K> {
     getRooms: () => Promise<K[]>
-    checkAuth: () => Promise<boolean>
+    checkUser: () => Promise<any>
   }
