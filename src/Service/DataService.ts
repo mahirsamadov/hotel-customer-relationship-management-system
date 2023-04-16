@@ -1,14 +1,14 @@
 import { onValue, ref, remove, get, update } from "firebase/database";
 import { db } from "../config/firebase";
-import { IDataService, Room } from "../models";
+import { IDataService, IRoom } from "../models";
 
-class DataService<Room> implements IDataService<Room>{
+class DataService<Room> implements IDataService<IRoom>{
 
     constructor(private db: any) {
         this.db = db
      }
     
-    getRooms = async (): Promise<Room[]> => {
+    getRooms = async (): Promise<IRoom[]> => {
         const roomsRef = ref(this.db, 'Rooms');
         const snapshot = await get(roomsRef);
         if (snapshot.exists()) {
@@ -20,13 +20,15 @@ class DataService<Room> implements IDataService<Room>{
         }
     }
     
-    getRoom = async (id: string): Promise<Room> => {
-        const roomsRef = ref(this.db, 'rooms/' + id);
-        const snapshot = await get(roomsRef);
+    getRoom = async (id: any): Promise<Room> => {
+        const roomsRef = ref(this.db, 'Rooms');
+        console.log("From ", id)
+        const snapshot = await (await get(roomsRef));
         if (snapshot.exists()) {
-        return snapshot.val();
+         console.log("From ", snapshot.val().filter((room: IRoom) => room.id === id))
+        return snapshot.val()
         } else {
-        console.log("No data available");
+        console.log("No data available for:", id);
         return {} as Room;
         }
     }
