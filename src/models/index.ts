@@ -1,12 +1,20 @@
 
 export interface BaseState<T> {
+    auth?: boolean
     data: T[] ,
     loading: boolean,
     error: boolean
 }
 
-export interface Reducer<T>{
+export interface Reducer<T, K>{
  room: BaseState<T>,
+ auth: BaseState<K>
+}
+
+export interface IAuth{
+  image: string,
+  username: string
+  password: string
 }
 
   export interface IRoom {

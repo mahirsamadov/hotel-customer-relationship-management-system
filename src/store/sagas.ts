@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { call, takeEvery, put, all } from 'redux-saga/effects';
 import DataService from '../Service/DataService';
 import { fetchDataFail, fetchDataRequest, fetchDataSuccess } from './actionCreators';
-import { FETCH_DATA_FAIL, FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, FETCH_SINGLE_DATA_REQUEST } from './actions';
+import {LOGIN, LOGOUT, FETCH_DATA_FAIL, FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, FETCH_SINGLE_DATA_REQUEST, AUTH } from './actions';
 
 
 function* getRoomsSaga():Generator {
@@ -16,8 +16,6 @@ function* getRoomsSaga():Generator {
 
 function* getRoomSaga(action: any):Generator {
   try{
-    
-    console.log(action.payload)
     const room = yield call(()=>DataService.getRoom(action.payload));
   yield put({ type: FETCH_DATA_SUCCESS, payload: room });
   }catch(error){
@@ -25,6 +23,19 @@ function* getRoomSaga(action: any):Generator {
   }
 }
 
+
+function* getAccountsSaga():Generator{
+  try{
+    const accounts = yield call(DataService.checkUser)
+  yield put({type: LOGIN, payload: accounts})
+  }catch(error){
+    yield put({type: LOGOUT})
+  }
+}
+
+function* getAccountsWatcher(){
+  yield takeEvery(AUTH, getAccountsSaga)
+}
 
 function* getRoomsWatcher() {
   yield takeEvery(FETCH_DATA_REQUEST, getRoomsSaga);
@@ -35,7 +46,7 @@ function* getRoomWatcher() {
 }
 
 function* rootSaga() {
-  yield all([getRoomsWatcher(), getRoomWatcher()]);
+  yield all([getRoomsWatcher(), getRoomWatcher(), getAccountsWatcher()]);
 }
 
 export default rootSaga

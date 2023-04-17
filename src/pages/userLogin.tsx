@@ -5,27 +5,29 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from '../components/Copyright';
-import { handleSubmit } from '../helpers/handleSubmit';
+import { getSignIn } from '../helpers/handleSubmit';
+import { useDispatch, useSelector } from 'react-redux';
+import { AUTH } from '../store/actions';
+import Selector from '../store/Selector';
+import { useNavigate } from 'react-router-dom';
 
 
 const theme = createTheme();
 
 export const UserLogin = () => {
-
-  React.useEffect(()=>{
-    
-  })
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const auth = useSelector(Selector.getAuthState)
+  const error = useSelector(Selector.getErrorState)
+  console.log(auth)
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider  theme={theme}  >
       <Container style={{margin: '1rem', border: '1px solid black', borderRadius: '10px', backgroundColor: 'white'}} component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -42,7 +44,7 @@ export const UserLogin = () => {
           <Typography component="h3" variant="h6">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={getSignIn(dispatch, navigate)} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -67,6 +69,7 @@ export const UserLogin = () => {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            {error && <Typography className='text-red-600'>Invalid Credentials</Typography> }
             <Button
               type="submit"
               fullWidth

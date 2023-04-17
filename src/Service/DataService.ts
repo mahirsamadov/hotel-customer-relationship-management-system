@@ -1,6 +1,6 @@
 import { onValue, ref, remove, get, update } from "firebase/database";
 import { db } from "../config/firebase";
-import { IDataService, IRoom } from "../models";
+import { IAuth, IDataService, IRoom } from "../models";
 
 class DataService<Room> implements IDataService<IRoom>{
 
@@ -43,7 +43,7 @@ class DataService<Room> implements IDataService<IRoom>{
     //     await remove(roomsRef);
     // }
     
-    checkUser = async (): Promise<any> => {
+    checkUser = async (): Promise<IAuth[]> => {
         const accountRef = ref(this.db, 'Accounts');
         const snapshot = await get(accountRef);
         if (snapshot.exists()) {
