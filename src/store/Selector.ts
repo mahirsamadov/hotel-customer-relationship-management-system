@@ -7,6 +7,7 @@ class Selector{
     getAuth = (state: Reducer<IRoom, IAuth>): IAuth[] => state.auth.data;
     getAuthState = (state: Reducer<IRoom, IAuth>): boolean | undefined => state.auth.auth
     getErrorState = (state: Reducer<IRoom, IAuth>): boolean => state.auth.error
+    getAuthLoadingState = (state: Reducer<IRoom, IAuth>): boolean => state.auth.loading
 }
 
 

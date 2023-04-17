@@ -3,7 +3,7 @@ import { Box, ImageList, ImageListItem, Typography } from "@mui/material";
 import { Button } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SimpleImageSlider from "react-simple-image-slider/dist/ImageSlider";
 import { retry } from "redux-saga/effects";
 import DataService from "../Service/DataService";
@@ -12,13 +12,13 @@ import {
   fetchSingleDataRequest,
 } from "../store/actionCreators";
 import Selector from "../store/Selector";
-import { Spinner } from "../UI/Spinner";
+
 
 export const RoomDetails = () => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch();
   const room = useSelector(Selector.getRooms);
-
+  const navigate = useNavigate()
   useEffect(() => {
     dispatch(fetchSingleDataRequest(id));
   }, []);
@@ -26,7 +26,7 @@ export const RoomDetails = () => {
 
   return (
     <Box className="flex w-[100vw] h-[100vh] flex-col py-2 px-8 gap-2 items-center overflow-scroll">
-      <Button>Back</Button>
+      <Button onClick={()=> navigate(-1)}>Back</Button>
       <Typography variant="h3">{room[0]?.type}</Typography>
       <Typography variant="h6">{room[0]?.description}</Typography>
       

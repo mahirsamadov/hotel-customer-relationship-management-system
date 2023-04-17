@@ -23,8 +23,9 @@ export const UserLogin = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const auth = useSelector(Selector.getAuthState)
+  const authLoading = useSelector(Selector.getAuthLoadingState)
   const error = useSelector(Selector.getErrorState)
-  console.log(auth)
+  console.log(authLoading)
 
   return (
     <ThemeProvider  theme={theme}  >
@@ -73,11 +74,12 @@ export const UserLogin = () => {
             <Button
               type="submit"
               fullWidth
+              
               style={{backgroundColor: 'black', color: 'white'}}
               className='bg-black'
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              {authLoading ? 'Signing in...' : 'Sign In'}
             </Button>
           </Box>
         </Box>

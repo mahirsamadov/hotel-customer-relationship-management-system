@@ -1,6 +1,6 @@
 import { data } from "autoprefixer"
 import { BaseState, IAuth } from "../models"
-import { AUTH_FAIL, LOGIN, LOGOUT } from "./actions"
+import { AUTH_FAIL, AUTH_REQUEST, LOGIN, LOGOUT } from "./actions"
 
 const initialState:BaseState<IAuth> = {
     auth: false,
@@ -15,7 +15,8 @@ const authReducer = (state = initialState, action: any) => {
         case LOGIN:
             return {
                 ...state,
-                auth: true
+                auth: true,
+                
             }
         case LOGOUT:
             return {
@@ -26,6 +27,11 @@ const authReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 error: true
+            }
+        case AUTH_REQUEST:
+            return {
+                ...state,
+                loading: true
             }
         default:
             return state
