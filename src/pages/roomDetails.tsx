@@ -1,17 +1,16 @@
 import { uuidv4 } from "@firebase/util";
 import { Box, ImageList, ImageListItem, Typography } from "@mui/material";
-import { Button } from "antd";
+import { Button, Carousel } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import SimpleImageSlider from "react-simple-image-slider/dist/ImageSlider";
-import { retry } from "redux-saga/effects";
-import DataService from "../Service/DataService";
+import { HomeOutlined } from '@ant-design/icons';
 import {
-  fetchDataRequest,
   fetchSingleDataRequest,
 } from "../store/actionCreators";
 import Selector from "../store/Selector";
+import zIndex from "@mui/material/styles/zIndex";
+
 
 
 export const RoomDetails = () => {
@@ -23,28 +22,50 @@ export const RoomDetails = () => {
     dispatch(fetchSingleDataRequest(id));
   }, []);
 
+ 
+
 
   return (
-    <Box className="flex w-[100vw] h-[100vh] flex-col overflow-x-hidden py-2 px-8 gap-2 items-center overflow-scroll">
-      <Button onClick={()=> navigate(-1)}>Back</Button>
-      <Typography variant="h3">{room[0]?.type}</Typography>
-      <Typography variant="h6">{room[0]?.description}</Typography>
-      
-      <ImageList sx={{ width: 1000, height: 800 }} variant="woven" cols={3} gap={8}>
-  {room[0]?.gallery.map((item:any) => (
-    <ImageListItem key={uuidv4()}>
-      <img
-        src={`${item}`}
-        srcSet={`${item}`}
-        alt={item.title}
-        loading="lazy"
-      />
-    </ImageListItem>
-  ))}
-</ImageList>
-<Typography variant="h5">Guest: {room[0]?.guest}</Typography>
-<Typography variant="h5">Size: {room[0]?.occupancy}m<sup>2</sup></Typography>
-<Typography variant="h5">Price: {room[0]?.price}$</Typography>
+    <Box className="w-full h-full my-2">
+   <Button className="flex items-center justify-center" type="link" icon={<HomeOutlined />} onClick={() => navigate(-1)}>Back Home</Button>
+      <Box className="flex">
+      <Carousel style={{position: "relative", margin: '0 1rem', width: '500px', height: '300px'}}>
+      {
+        room[0].gallery.map(image => (
+          <div key={uuidv4()}>
+            <img style={{width: '500px', height: '300px'}} src={image}></img>
+          </div>
+        ))
+      }
+    </Carousel>
+    <Box className="info flex flex-col gap-2 w-full">
+      <b className="text-xl">{room[0].type}</b>
+      <span className="font-thin"><b>Type: </b>{room[0].type}</span>
+      <span className="font-thin"><b>Occupancy: </b>{room[0].occupancy}</span>
+      <span className="font-thin"><b>Price: </b>{room[0].price}</span>
+      <span className="font-thin"><b>Guest: </b>{room[0].guest}</span>
     </Box>
+    <Box className='w-full flex flex-col h-full justify-end gap-2 mx-4'>
+      <Box className='buttons flex gap-2 w-full justify-end'>
+        <Button>Check In</Button>
+        <Button className="bg-blue-500 text-white hover:text-white hover:bg-white">Check Out</Button>
+      </Box>
+      <b>Features</b>
+     <Box className=''>
+     {
+        room[0].features.map(feature => (
+          <span className="font-thin text-xs">{feature}</span>
+        ))
+      }
+     </Box>
+    </Box>
+      </Box>
+      <Box className="description mx-4 my-4 flex">
+        <b className="mx-2">Description</b>
+        <p className="font-thin text-xs">
+          {room[0].description}
+        </p>
+      </Box>
+      </Box>
   );
 };
