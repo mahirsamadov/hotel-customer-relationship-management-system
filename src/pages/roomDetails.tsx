@@ -25,7 +25,7 @@ export const RoomDetails = () => {
 
 
   return (
-    <Box className="flex w-[100vw] h-[100vh] flex-col py-2 px-8 gap-2 items-center overflow-scroll">
+    <Box className="flex w-[100vw] h-[100vh] flex-col overflow-x-hidden py-2 px-8 gap-2 items-center overflow-scroll">
       <Button onClick={()=> navigate(-1)}>Back</Button>
       <Typography variant="h3">{room[0]?.type}</Typography>
       <Typography variant="h6">{room[0]?.description}</Typography>
