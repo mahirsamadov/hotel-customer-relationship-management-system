@@ -7,9 +7,17 @@
 .App{
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    align-items: start;
+    justify-content: center;
+    align-items: end;
     height: 100vh;
     background-image: url(https://wallpapercave.com/wp/wp9660903.jpg);
     background-size: cover;
 }
+
+
+@media screen and (max-width: 768px) {
+    .App {
+        align-items: center;
+    }
+}
+    

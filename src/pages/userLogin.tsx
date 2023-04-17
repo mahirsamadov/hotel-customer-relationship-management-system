@@ -29,7 +29,7 @@ export const UserLogin = () => {
 
   return (
     <ThemeProvider  theme={theme}  >
-      <Container style={{margin: '1rem', border: '1px solid black', borderRadius: '10px', backgroundColor: 'white'}} component="main" maxWidth="xs">
+      <Container style={{margin: '2rem', border: '1px solid black', borderRadius: '10px', backgroundColor: 'white'}} component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
