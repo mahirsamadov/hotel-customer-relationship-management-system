@@ -78,7 +78,7 @@ export const Rooms = () => {
     <Checkbox onChange={()=>setFilter(!filter)} className='m-2'/>
     <span>Free rooms only</span>
    </Box>
-   <Table className='w-[80vw] h-[75vh] text-center' size="large" dataSource={filteredRooms} columns={columns} rowKey="id"/>
+   <Table className='w-[80vw] h-[70vh] text-center' size="large" dataSource={filteredRooms} columns={columns} rowKey="id"/>
    </Box>
   )   
 }
